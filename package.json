@@ -11,6 +11,10 @@
   "author": "Punsan Somkla 026",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2"
+    "env": "^0.0.2",
+    "express": "^4.19.2",
+    "pg": "^8.12.0",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.3"
   }
 }
