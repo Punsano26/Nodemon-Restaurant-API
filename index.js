@@ -1,10 +1,21 @@
-const express = require('express');
+const express = require("express");
 const app = express();
+require("dotenv").config(".env");
+const PORT = process.env.PORT || 3000;
+const restaurantRouter = require("./routers/restaurant.router");
 
-app.get('/', (req, res) => {
-    res.send('<h1>Hello Restaurant API</h1>');
+//use middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+//use Router
+
+app.use("/api/v1/restaurants", restaurantRouter);
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello Restaurant API</h1>");
 });
 
-app.listen(3000, () => {
-    console.log('Listening to port 3000');
+app.listen(PORT, () => {
+  console.log("Listenning to http://localhost:" + PORT);
 });
