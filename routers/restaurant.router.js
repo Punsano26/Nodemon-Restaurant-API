@@ -7,13 +7,13 @@ const Restaurant = require("../models/restaurant.model");
 //POST http://localhost:3000/api/v1/restaurants
 router.post("/", restaurantController.create);
 
-//Get all restaurant
+//Get all restaurant ดึงข้อมูลร้านอาหารทั้งหมด 
 router.get("/", restaurantController.getall);
-//Get By ID
+//Get By ID ดึงข้อมูลร้านอาหารตาม ID โดยส่งคำขอไปยังฟังก์ชัน getById
 router.get("/:id", restaurantController.getById);
-//update a restaurant by Id
+//update a restaurant by Id สำหรับอัพเดทร้านอาหารตาม ID 
 router.put("/:id", restaurantController.update);
-//delete a restaurant by Id
+//delete a restaurant by Id ลบร้านอาหารตาม ID โดยส่งคำขอไปยังฟังก์ชัน deletebyid
 router.delete("/:id", restaurantController.deletebyid);
 
 
