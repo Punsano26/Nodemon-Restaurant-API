@@ -3,6 +3,14 @@ const router = express.Router(); //เรียกออกมาเป็นฟ
 const restaurantController = require("../controllers/restaurant.controllers");
 const Restaurant = require("../models/restaurant.model");
 
+
+// const userController = require("../controllers/user.controllers");
+// const User = require("../models/user.model");
+
+// const roleController = require("../controllers/role.controllers");
+// const Role = require("../models/role.model");
+
+
 //create a restaurant
 //POST http://localhost:3000/api/v1/restaurants
 router.post("/", restaurantController.create);

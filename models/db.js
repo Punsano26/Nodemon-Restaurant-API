@@ -5,11 +5,14 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
   dialect: dbConfig.dialect,
   dialectOptions: {
-    ssl: { require: true, rejectUnauthorized: false },
-  },
+    ssl: {
+      require: true,
+      rejectUnauthorized: false  // หรือใช้ process.env.NODE_ENV === 'production' ? true : false ตามสภาพแวดล้อม
+    }
+  }
 });
 
-testConnection = async () => {
+const testConnection = async () => {
   try {
     await sequelize.authenticate();
     console.log("Connection has been established successfully.");
@@ -19,4 +22,6 @@ testConnection = async () => {
 };
 
 testConnection();
+
 module.exports = sequelize;
+

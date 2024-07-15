@@ -3,13 +3,38 @@ const app = express();
 require("dotenv").config(".env");
 const PORT = process.env.PORT || 3000;
 const restaurantRouter = require("./routers/restaurant.router");
+const authRouter = require("./routers/auth.router");
+const db = require("./models/index");
+const role = db.Role;
+
+//Dev mode
+db.sequelize.sync({ force: true }).then(() => {
+  initRole();
+  console.log("Drop and re-sync db.");
+});
+
+
+const initRole = () => {
+  role.create({
+    id: 1,
+    name: "user",
+  });
+  role.create({
+    id: 2,
+    name: "moderator",
+  });
+  role.create({
+    id: 3,
+    name: "admin",
+  });
+};
 
 //use middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //use Router
-
+app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/restaurants", restaurantRouter);
 
 app.get("/", (req, res) => {
