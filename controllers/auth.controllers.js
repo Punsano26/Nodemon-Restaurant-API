@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 const { Op } = require("sequelize");
 
 //register a new user
-exports.sigup = async (req, res) => {
+exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
   if (!username || !email || !password) {
     res.status(400).send({ message: "ไปกรอกใหม่ไป!" });
