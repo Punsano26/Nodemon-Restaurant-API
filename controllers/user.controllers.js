@@ -1,6 +1,6 @@
 const User = require("../models/user.model");
 //crate and Save a new User
-exports.create = async (req, res) => {
+exports.selectaUser = async (req, res) => {
   const { username, email, password } = req.body;
   //validate data
   if (!username || !email || !password) {

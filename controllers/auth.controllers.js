@@ -49,3 +49,48 @@ exports.signup = async (req, res) => {
       });
     });
 };
+
+//Signin
+exports.signin = async (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) {
+    res.status(400).send({ message: "Please provide all required fields" });
+    return;
+  }
+
+  //select * from users where username = "username";
+  await User.findOne({ where: { username: username } })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User not found." });
+      }
+      const passwordIsValid = bcrypt.compareSync(password, user.password);
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Password! ผิด",
+        });
+      }
+      // การออก token ให้กับ user
+      const token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: "2 days",
+      });
+      //Select * From user_roles inner join users on user.id = user_role.userId inner join roles on user_roles.
+      const authorities = [];
+      user.getRoles().then((roles) => {
+        for (let i = 0; i < roles.length; i++) {
+          authorities.push("ROLE_" + roles[i].name.toUpperCase());
+        }
+        res.status(200).send({
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          roles: authorities,
+          accessToken: token,
+        });
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message || "ไม่สามารถ Singin ได้" });
+    });
+};

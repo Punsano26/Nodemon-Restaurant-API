@@ -6,6 +6,7 @@ const Auth = require("../controllers/auth.controllers");
 //create a auth
 //POST http://localhost:3000/api/v1/auth/signup
 router.post("/signup", authController.signup);
+//http://localhost:3000/api/v1/auth/signin
+router.post("/signin", authController.signin);
 
 module.exports = router;
-
