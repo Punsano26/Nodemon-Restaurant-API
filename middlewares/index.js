@@ -1,3 +1,3 @@
-const verifySingUp =  require("./verifySignUp")
+const verifySignUp = require("./verifySignUp");
 
-module.exports = {verifySingUp,};
+module.exports = { verifySignUp }; //อย่าพิมพ์ผิด
