@@ -6,6 +6,11 @@ const restaurantRouter = require("./routers/restaurant.router");
 const authRouter = require("./routers/auth.router");
 const db = require("./models/index");
 const role = db.Role;
+const cors = require("cors");
+
+const corsOption = {
+  origin: "http://localhost:3000",
+}
 
 //Dev mode
 db.sequelize.sync({ force: true }).then(() => {
@@ -30,6 +35,7 @@ const initRole = () => {
 };
 
 //use middleware
+app.use(cors(corsOption));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
