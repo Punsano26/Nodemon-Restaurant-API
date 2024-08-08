@@ -9,15 +9,14 @@ const role = db.Role;
 const cors = require("cors");
 
 const corsOption = {
-  origin: "http://localhost:3000",
-}
+  origin: "http://localhost:5173",
+};
 
 //Dev mode
 db.sequelize.sync({ force: true }).then(() => {
   initRole();
   console.log("Drop and re-sync db.");
 });
-
 
 const initRole = () => {
   role.create({
