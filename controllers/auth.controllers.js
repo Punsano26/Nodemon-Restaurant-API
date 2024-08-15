@@ -91,6 +91,10 @@ exports.signin = async (req, res) => {
       });
     })
     .catch((err) => {
-      res.status(500).send({ message: err.message || "ไม่สามารถ Singin ได้" });
+      res.status(500).send({ 
+        message: 
+        err.message || 
+        "ไม่สามารถ Singin ได้",
+       });
     });
 };
