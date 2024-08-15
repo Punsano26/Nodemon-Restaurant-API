@@ -55,7 +55,9 @@ isAdminOrMod = (req, res, next) => {
   User.findByPk(req.userId).then((user) => {
     user.getRoles().then((roles) => {
       for (let i = 0; i < roles.length; i++) {
-        if (roles[i].name === "moderator" || roles[i].name === "admin") {
+        if (roles[i].name === "moderator" || 
+          roles[i].name === "admin"
+        ) {
           next();
           return;
         }
@@ -69,9 +71,9 @@ isAdminOrMod = (req, res, next) => {
   });
 };
 const authJwt = {
-  verifyToken,
-  isAdmin,
-  IsMod,
-  isAdminOrMod,
+  verifyToken,    // ตรวจสอบความถูกต้องของโทเค็น
+  isAdmin,        // ตรวจสอบว่าผู้ใช้เป็น admin หรือไม่
+  IsMod,          // ตรวจสอบว่าผู้ใช้เป็น moderator หรือไม่
+  isAdminOrMod,   // ตรวจสอบว่าผู้ใช้เป็น admin หรือ moderator หรือไม่
 };
-module.exports = authJwt;
+module.exports = authJwt; // ส่งออกวัตถุ authJwt ให้สามารถนำไปใช้ในไฟล์อื่นๆ ได้

@@ -15,6 +15,7 @@ checkDuplicateUsernameOrEmail = async (req, res, next) => {
       });
       return;
     }
+    // check email
     User.findOne({
       where: {
         email: req.body.email,
@@ -36,10 +37,9 @@ checkRolesExisted = async (req, res, next) => {
   if (req.body.roles) {
     Role.findAll({
       where: {
-        name: { [Op.or]: req.body.roles },
-      },
-    }).then((roles) => {
-      if (roles.length !== req.body.roles.length) {
+        name: { [Op.or]: req.body.roles }}})
+        .then((roles) => {
+      if (roles.length != req.body.roles.length) {
         res.status(400).send({
           message: "Failed! Role does not exist!",
         });

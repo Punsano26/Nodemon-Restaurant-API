@@ -4,8 +4,9 @@ exports.create = async (req, res) => {
   const { title, type, img } = req.body;
   //validate data
   if (!title || !type || !img) {
-    res.status(400).send({ message: "Name, Type and Image can not be empty!" });
-    return;
+    res.status(400).send({ 
+      message: "Name, Type and Image can not be empty!" ,
+    });
   }
   await Restaurant.findOne({ where: { title: req.body.title } }).then(
     (restaurant) => {
@@ -36,6 +37,8 @@ exports.create = async (req, res) => {
 
 //Get all restaurant
 exports.getall = async (req, res) => {
+
+  
   await Restaurant.findAll()
     .then((data) => {
       res.send(data);
@@ -72,12 +75,7 @@ exports.getById = async (req, res) => {
 //UpdAte a restaurant
 exports.update = async (req, res) => {
   const id = req.params.id;
-  await Restaurant.update(req.body, {
-    where: {
-      id: id,
-    },
-  })
-    .then((num) => {
+  await Restaurant.update(req.body, {where: { id: id,}}).then((num) => {
       if (num == 1) {
         res.send({ message: "Restaurant was update successfully" });
       } else {

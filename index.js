@@ -13,10 +13,10 @@ const corsOption = {
 };
 
 //Dev mode
-db.sequelize.sync({ force: true }).then(() => {
-  initRole();
-  console.log("Drop and re-sync db.");
-});
+// db.sequelize.sync({ force: true }).then(() => {
+//   initRole();
+//   console.log("Drop and re-sync db.");
+// });
 
 const initRole = () => {
   role.create({
