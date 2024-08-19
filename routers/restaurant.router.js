@@ -24,7 +24,7 @@ router.get("/:id", [authJwt.verifyToken], restaurantController.getById);
 //update a restaurant by Id สำหรับอัพเดทร้านอาหารตาม ID
 router.put(
   "/:id",
-  [(authJwt.verifyToken, authJwt.isAdminOrMod)],
+  [authJwt.verifyToken, authJwt.isAdminOrMod],
   restaurantController.update
 );
 //delete a restaurant by Id ลบร้านอาหารตาม ID โดยส่งคำขอไปยังฟังก์ชัน deletebyid

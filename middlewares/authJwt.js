@@ -13,8 +13,9 @@ verifyToken = (req, res, next) => {
   jwt.verify(token, config.secret, (err, decoded) => {
     if (err) {
       return res.status(401).send({ message: "Unauthorized!" });
-    }
+    }console.log(decoded.id+"hello");
     req.userId = decoded.id;
+    
     next();
   });
 };
@@ -52,7 +53,9 @@ IsMod = (req, res, next) => {
 };
 //IsAdminOrMod?
 isAdminOrMod = (req, res, next) => {
+ console.log(req.userId+"Punsan");
   User.findByPk(req.userId).then((user) => {
+    
     user.getRoles().then((roles) => {
       for (let i = 0; i < roles.length; i++) {
         if (roles[i].name === "moderator" || 
