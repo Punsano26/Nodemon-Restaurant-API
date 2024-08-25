@@ -2,6 +2,8 @@ const Restaurant = require("../models/restaurant.model");
 //crate and Save a new Restaurant
 exports.create = async (req, res) => {
   const { title, type, img } = req.body;
+  console.log(res.body+"hello12121");
+  
   //validate data
   if (!title || !type || !img) {
     res.status(400).send({ 
