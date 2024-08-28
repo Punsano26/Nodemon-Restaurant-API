@@ -9,6 +9,8 @@ const { Op } = require("sequelize");
 //register a new user
 exports.signup = async (req, res) => {
   const { username, email, password } = req.body;
+  
+  
   if (!username || !email || !password) {
     res.status(400).send({ message: "ไปกรอกใหม่ไป!" });
     return;
@@ -53,6 +55,8 @@ exports.signup = async (req, res) => {
 //Signin
 exports.signin = async (req, res) => {
   const { username, password } = req.body;
+  console.log(username + "Hellopunsan");
+  
   if (!username || !password) {
     res.status(400).send({ message: "Please provide all required fields" });
     return;
